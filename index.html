@@ -1265,7 +1265,7 @@
 // ═════════════════════════════════════════════════════════════════
 // const API_URL = 'https://script.google.com/macros/s/AKfycbxEXMoQ67l_MTrDawtk5fywCDTOuL4rtMc3v92G3q03abz_fwn1ilaPJP3px8Rwjs1O/exec';
 
-const API_URL ="https://script.google.com/macros/s/AKfycbzM3FtPhCCtCZDDUoWS0LopnLi5Ube7LqXH8CbKzywxGI2gmUwfiC283hzb0ROHCA/exec"
+const API_URL ="https://script.google.com/macros/s/AKfycbyhOF2ebdTMEeGOQLHoibST_m-q0CBwMe84AZAcs1G8HQSPRMu9Q87ADGBpvZw0rw3j/exec"
 const SESSION_KEY = 'user_session_v1';
 /* storage keys */
 const K_FAULTS='faults_v2_final', K_ORDERS='orders_v2_final', K_TRASH='trash_v2_final', K_ATT='attendance_v1', K_MAINTENANCE='maintenance_v1';
@@ -2297,7 +2297,7 @@ async function apiPost(payload){
   if (s?.token && !payload.token) payload.token = s.token;
   const res = await fetch(API_URL, {
     method: "POST",
-    // headers: { "Content-Type": "text/plain;charset=utf-8" },
+    headers: { "Content-Type": "text/plain;charset=utf-8" },
     body: JSON.stringify(payload)
   });
   return res.json();
@@ -6452,9 +6452,7 @@ saveAll();
       // محاولة إرسال طلب POST لتحديث الملف (يتطلب backend)
       const response = await fetch('update-passwords.php', {
         method: 'POST',
-        // headers: {
-        //   'Content-Type': 'application/json'
-        // },
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
         body: JSON.stringify({
           username: username,
           password: newPassword,
@@ -6784,7 +6782,7 @@ let LOGIN_CREDENTIALS = ${JSON.stringify(LOGIN_CREDENTIALS, null, 2)};`;
     try {
       const res = await fetch(API_URL, {
         method: "POST",
-        // headers: { "Content-Type": "text/plain;charset=utf-8" },
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
         body: JSON.stringify({
           action: "changePassword",
           token: s.token,
@@ -6831,7 +6829,7 @@ let LOGIN_CREDENTIALS = ${JSON.stringify(LOGIN_CREDENTIALS, null, 2)};`;
     try {
       const res = await fetch(API_URL, {
         method: "POST",
-        // headers: { "Content-Type": "text/plain;charset=utf-8" },
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
         body: JSON.stringify({ action: "validateSession", token: s.token })
       });
       const data = await res.json();
@@ -6925,7 +6923,7 @@ let LOGIN_CREDENTIALS = ${JSON.stringify(LOGIN_CREDENTIALS, null, 2)};`;
   }
   
   // دالة معالجة تسجيل الدخول
-  async function handleLogin(event) {
+   async function handleLogin(event) {
     event.preventDefault();
     
     const userCode = document.getElementById('userCode').value.trim();
@@ -6935,9 +6933,9 @@ let LOGIN_CREDENTIALS = ${JSON.stringify(LOGIN_CREDENTIALS, null, 2)};`;
     errorDiv.classList.remove('show');
     
     try {
-      const res = await fetch(API_URL, {
+      const res =  await fetch(API_URL, {
         method: "POST",
-        // headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
         body: JSON.stringify({
           action: "login",
           userCode,
@@ -7005,7 +7003,7 @@ let LOGIN_CREDENTIALS = ${JSON.stringify(LOGIN_CREDENTIALS, null, 2)};`;
     if (s?.token) {
       await fetch(API_URL, {
         method: "POST",
-        // headers: { "Content-Type": "text/plain;charset=utf-8" },
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
         body: JSON.stringify({ action: "logout", token: s.token })
       });
     }
@@ -7452,8 +7450,3 @@ let LOGIN_CREDENTIALS = ${JSON.stringify(LOGIN_CREDENTIALS, null, 2)};`;
 
 </body>
 </html>
-
-
-
-
-
